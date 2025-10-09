@@ -1,73 +1,99 @@
-# React + TypeScript + Vite
+# 🛒 SmartShopper — Shopping List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and responsive **Shopping List App** built with **React + TypeScript**, **Redux Toolkit**, **Tailwind CSS**, and **JSON Server**.
 
-Currently, two official plugins are available:
+This project allows users to register, log in, and manage multiple shopping lists. Each shopping list can contain multiple items that users can add, edit, delete, search, and sort by name or category.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 👤 User Management
+- User **Registration** with: name, surname, email, password, and cell number  
+- User **Login** with encrypted credentials  
+- **Protected routes** — only logged-in users can access home or list pages  
+- **Profile page** where users can update their info  
+- **Logout** functionality  
 
-## Expanding the ESLint configuration
+### 🛍️ Shopping List Management
+- Create, view, edit, and delete shopping lists  
+- Each list can have multiple **items** with:
+  - Item name  
+  - Quantity  
+  - Category  
+- Search and sort items inside each list  
+- Data is stored persistently in a **JSON Server** backend  
+- Lists and items update instantly with Redux state management  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ⚙️ Technical Features
+- Built with **React + TypeScript**  
+- State managed by **Redux Toolkit**  
+- Styled with **Tailwind CSS**  
+- Data stored and fetched via **JSON Server**  
+- Responsive design for mobile, tablet, and desktop  
+- URL reflects search and sort states  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧰 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Category | Technology |
+|-----------|-------------|
+| Frontend | React + TypeScript |
+| State Management | Redux Toolkit |
+| Styling | Tailwind CSS |
+| Backend (Mock API) | JSON Server |
+| Routing | React Router v6 |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧑‍💻 Setup Instructions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/YOUR_USERNAME/shopping-list-app.git
+cd shopping-list-app
+
+### 2️⃣ Install Dependencies
+npm install
+
+### 3️⃣ Run JSON Server
+
+Create a db.json file in the project root with this starter data:
+
+{
+  "users": [],
+  "shoppingLists": []
+}
+
+
+Then start the JSON server:
+
+npx json-server --watch db.json --port 5000
+
+### 4️⃣ Start the React App
+npm run dev
+
+
+The app runs at:
+👉 http://localhost:5173
+The JSON API runs at:
+👉 http://localhost:5000
+
+📁 Folder Structure
+src/
+ ├── pages/
+ │   ├── LoginPage.tsx
+ │   ├── RegisterPage.tsx
+ │   ├── HomePage.tsx
+ │   ├── ListDetailsPage.tsx
+ │   ├── ProfilePage.tsx
+ │
+ ├── redux/
+ │   ├── store.ts
+ │   ├── userSlice.ts
+ │   ├── listSlice.ts
+ │
+ ├── App.tsx
+ ├── main.tsx
+ ├── index.css
