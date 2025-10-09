@@ -54,26 +54,27 @@ This project allows users to register, log in, and manage multiple shopping list
 git clone https://github.com/YOUR_USERNAME/shopping-list-app.git
 cd shopping-list-app
 
-```
+```bash
 ### 2️⃣ Install Dependencies
-npm install
+```npm install ```
 
 ### 3️⃣ Run JSON Server
 
 Create a db.json file in the project root with this starter data:
-
+```bash
 {
   "users": [],
   "shoppingLists": []
 }
-
+```
 
 Then start the JSON server:
 
 npx json-server --watch db.json --port 5000
 
 ### 4️⃣ Start the React App
-npm run dev
+```bash
+npm run dev ```
 
 
 The app runs at:
