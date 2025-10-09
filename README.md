@@ -70,9 +70,10 @@ Create a db.json file in the project root with this starter data:
 }
 ```
 
-Then start the JSON server:
-
+### Then start the JSON server:
+```bash
 npx json-server --watch db.json --port 5000
+```
 
 ### 4️⃣ Start the React App
 ```bash
