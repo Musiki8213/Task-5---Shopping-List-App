@@ -53,10 +53,11 @@ This project allows users to register, log in, and manage multiple shopping list
 ```bash
 git clone https://github.com/YOUR_USERNAME/shopping-list-app.git
 cd shopping-list-app
+```
 
-```bash
 ### 2️⃣ Install Dependencies
-```npm install ```
+```bash
+npm install ```
 
 ### 3️⃣ Run JSON Server
 
