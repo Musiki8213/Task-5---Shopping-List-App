@@ -54,6 +54,7 @@ This project allows users to register, log in, and manage multiple shopping list
 git clone https://github.com/YOUR_USERNAME/shopping-list-app.git
 cd shopping-list-app
 
+```
 ### 2️⃣ Install Dependencies
 npm install
 
