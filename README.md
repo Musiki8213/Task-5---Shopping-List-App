@@ -1,4 +1,4 @@
-# 🛒 SmartShopper — Shopping List App
+# 🛒 ShopMate — Shopping List App
 
 A simple and responsive **Shopping List App** built with **React + TypeScript**, **Redux Toolkit**, **Tailwind CSS**, and **JSON Server**.
 
