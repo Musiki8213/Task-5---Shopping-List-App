@@ -57,7 +57,8 @@ cd shopping-list-app
 
 ### 2️⃣ Install Dependencies
 ```bash
-npm install ```
+npm install
+```
 
 ### 3️⃣ Run JSON Server
 
@@ -75,7 +76,8 @@ npx json-server --watch db.json --port 5000
 
 ### 4️⃣ Start the React App
 ```bash
-npm run dev ```
+npm run dev
+ ```
 
 
 The app runs at:
