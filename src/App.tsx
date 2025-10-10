@@ -5,6 +5,8 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import ListDetailsPage from "./pages/ListDetailsPage";
 import PrivateRoute from "./components/PrivateRoute";
+import AboutPage from "./pages/AboutPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route
         path="/home"
         element={

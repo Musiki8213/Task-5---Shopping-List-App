@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../redux/store";
 import { setLists, addList, deleteList } from "../redux/listSlice";
-import { logout } from "../redux/userSlice";
+import Navbar from "../components/Navbar";
 
-// Categories for shopping lists
 const categories = [
   "Grocery",
   "Dairy",
@@ -25,10 +24,8 @@ const HomePage = () => {
   const lists = useSelector((state: RootState) => state.lists.lists);
   const user = useSelector((state: RootState) => state.user.user);
 
-  // Form state includes name + category
   const [form, setForm] = useState({ name: "", category: categories[0] });
 
-  // Fetch current user's lists
   useEffect(() => {
     if (!user) return;
     fetch(`http://localhost:5000/shoppingLists?userId=${user.id}`)
@@ -36,12 +33,10 @@ const HomePage = () => {
       .then((data) => dispatch(setLists(data)));
   }, [dispatch, user]);
 
-  // Update form state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Add a new list
   const handleAddList = async () => {
     if (!form.name) {
       alert("List name required");
@@ -67,99 +62,113 @@ const HomePage = () => {
     setForm({ name: "", category: categories[0] });
   };
 
-  // Delete a list
   const handleDeleteList = async (id: number) => {
     await fetch(`http://localhost:5000/shoppingLists/${id}`, { method: "DELETE" });
     dispatch(deleteList(id));
   };
 
-  // Logout
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
   if (!user) navigate("/login");
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">🛒 {user?.name}'s Shopping Lists</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          Logout
-        </button>
-      </div>
+    <div className="relative min-h-screen bg-gray-900 text-white">
+      <Navbar />
 
-      {/* Add New List Form */}
-      <div className="bg-white p-4 rounded shadow mb-6">
-        <h2 className="text-xl font-semibold mb-3">Add New List</h2>
-        <div className="flex gap-2 flex-wrap">
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="List Name"
-            className="border p-2 flex-1 rounded min-w-[150px]"
-          />
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            className="border p-2 rounded min-w-[150px]"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-          <button
-            onClick={handleAddList}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            ➕ Add List
-          </button>
+      {/* Background and overlay */}
+      <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 p-8 max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">
+           {user?.name}'s Shopping Lists
+          </h1>
         </div>
-      </div>
 
-      {/* Display Lists */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-3">Your Lists</h2>
-        {lists.length === 0 ? (
-          <p className="text-gray-500">No lists yet.</p>
-        ) : (
-          <ul className="space-y-3">
-            {lists.map((list) => (
-              <li
-                key={list.id}
-                className="bg-white p-4 rounded shadow flex justify-between items-center"
-              >
-                <div>
-                  <span className="font-semibold text-lg">{list.name}</span>{" "}
-                  <span className="text-gray-500 text-sm">({list.category})</span>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => navigate(`/list/${list.id}`)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                  >
-                    View
-                  </button>
-                  <button
-                    onClick={() => handleDeleteList(list.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        {/* Add New List */}
+        <div className="backdrop-blur-[20px] bg-white/10 p-6 rounded-2xl shadow-2xl mb-10">
+          <h2 className="text-xl font-semibold mb-4">Add New List</h2>
+          <div className="flex flex-wrap gap-3">
+            <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              placeholder="List Name"
+              className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white flex-1 min-w-[150px]"
+            />
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+              className="p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-white min-w-[150px] cursor-pointer"
+            >
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+            <button
+              onClick={handleAddList}
+              className="bg-black text-white px-4 py-2 rounded-lg hover:bg-green-700 transition cursor-pointer"
+            >
+               Add List
+            </button>
+          </div>
+        </div>
+
+        {/* Lists Display */}
+        <div className="backdrop-blur-[20px] bg-white/10 p-6 rounded-2xl shadow-2xl">
+          <h2 className="text-2xl font-semibold mb-4">Your Lists</h2>
+
+          {lists.length === 0 ? (
+            <p className="text-gray-400">No lists yet.</p>
+          ) : (
+            <ul className="space-y-4">
+              {lists.map((list) => (
+                <li
+                  key={list.id}
+                  className="bg-white/10 p-4 rounded-lg flex justify-between items-center backdrop-blur-sm"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">{list.name}</h3>
+                    <p className="text-gray-300 text-sm">{list.category}</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => navigate(`/list/${list.id}`)}
+                      className="bg-black text-white px-4 py-2 rounded-lg hover:bg-green-700 transition cursor-pointer"
+                    >
+                      View
+                    </button>
+                    <button
+                      onClick={() => handleDeleteList(list.id)}
+                      className="py-1 rounded-lg"
+                    >
+                       <img
+                        src="/bin.png"
+                        alt="delete"
+                        className="w-6 h-6 cursor-pointer" 
+                      />
+                    </button>
+                    <button
+                      onClick={() => {
+                        const shareURL = `${window.location.origin}/list/${list.id}?shared=true`;
+                        navigator.clipboard.writeText(shareURL).then(() => {
+                          alert("Shareable list link copied to clipboard!");
+                        });
+                      }}
+                      className="bg-black text-white px-4 py-2 rounded-lg hover:bg-green-700 transition cursor-pointer"
+                    >
+                      Share
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/NavBar"; 
+import Navbar from "../components/Navbar"; 
 
 const LandingPage: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const LandingPage: React.FC = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center backdrop-blur-[10px] p-10 rounded-2xl shadow-2xl max-w-lg text-center mx-auto mt-70">
+      <div className="relative z-10 flex flex-col items-center justify-center backdrop-blur-[8px] p-10 rounded-2xl shadow-2xl max-w-lg text-center mx-auto mt-70 border border-white/20">
         <h1 className="text-4xl font-bold mb-4 text-white">
           Welcome to ShopMate
         </h1>

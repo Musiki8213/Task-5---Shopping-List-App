@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Navbar from "../components/NavBar";
+import Navbar from "../components/Navbar";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -33,13 +33,21 @@ const RegisterPage = () => {
   const isValidEmail = (email: string) => /^\S+@\S+\.\S+$/.test(email);
 
   const handleRegister = async () => {
-    const newErrors: typeof errors = { name: "", surname: "", email: "", password: "", cell: "", general: "" };
+    const newErrors: typeof errors = {
+      name: "",
+      surname: "",
+      email: "",
+      password: "",
+      cell: "",
+      general: "",
+    };
 
     // Validation
     if (!formData.name) newErrors.name = "Name is required";
     if (!formData.surname) newErrors.surname = "Surname is required";
     if (!formData.email) newErrors.email = "Email is required";
-    else if (!isValidEmail(formData.email)) newErrors.email = "Invalid email format";
+    else if (!isValidEmail(formData.email))
+      newErrors.email = "Invalid email format";
     if (!formData.password) newErrors.password = "Password is required";
     if (!formData.cell) newErrors.cell = "Cell number is required";
 
@@ -84,7 +92,9 @@ const RegisterPage = () => {
 
   const inputClass = (field: keyof typeof errors) =>
     `p-2 w-full rounded placeholder-gray-400 focus:outline-none focus:ring-2 ${
-      errors[field] ? "border-2 border-red-500" : "bg-white text-black focus:ring-white"
+      errors[field]
+        ? "border-2 border-red-500"
+        : "bg-white text-black focus:ring-white"
     }`;
 
   return (
@@ -97,33 +107,42 @@ const RegisterPage = () => {
 
       {/* Form card */}
       <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <div className="backdrop-blur-[20px] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center mb-20">
+        <div className="backdrop-blur-[8px] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center mb-20 border border-white/20">
           <h1 className="text-3xl font-bold mb-6 text-white">Register</h1>
 
-          {errors.general && <p className="text-red-500 mb-4">{errors.general}</p>}
+          {errors.general && (
+            <p className="text-red-500 mb-4">{errors.general}</p>
+          )}
 
           <div className="space-y-4 text-left">
             <div>
+              <label className="block text-gray-300 mb-1">Name</label>
               <input
                 name="name"
                 placeholder="Name"
                 onChange={handleChange}
                 className={inputClass("name")}
               />
-              {errors.name && <p className="text-red-500  text-sm mt-1">{errors.name}</p>}
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+              )}
             </div>
 
             <div>
+              <label className="block text-gray-300 mb-1">Surname</label>
               <input
                 name="surname"
                 placeholder="Surname"
                 onChange={handleChange}
                 className={inputClass("surname")}
               />
-              {errors.surname && <p className="text-red-500 text-sm mt-1">{errors.surname}</p>}
+              {errors.surname && (
+                <p className="text-red-500 text-sm mt-1">{errors.surname}</p>
+              )}
             </div>
 
             <div>
+              <label className="block text-gray-300 mb-1">Email</label>
               <input
                 name="email"
                 type="email"
@@ -131,20 +150,26 @@ const RegisterPage = () => {
                 onChange={handleChange}
                 className={inputClass("email")}
               />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
 
             <div>
+              <label className="block text-gray-300 mb-1">Cell Number</label>
               <input
                 name="cell"
                 placeholder="Cell Number"
                 onChange={handleChange}
                 className={inputClass("cell")}
               />
-              {errors.cell && <p className="text-red-500 text-sm mt-1">{errors.cell}</p>}
+              {errors.cell && (
+                <p className="text-red-500 text-sm mt-1">{errors.cell}</p>
+              )}
             </div>
 
             <div>
+              <label className="block text-gray-300 mb-1">Password</label>
               <input
                 name="password"
                 type="password"
@@ -152,7 +177,9 @@ const RegisterPage = () => {
                 onChange={handleChange}
                 className={inputClass("password")}
               />
-              {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
             </div>
 
             <button
