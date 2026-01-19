@@ -63,11 +63,11 @@ const ProfilePage = () => {
         <Navbar />
         <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
         <div className="absolute inset-0 bg-black/60"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-white">
-          <p className="text-lg mb-4">You are not logged in.</p>
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-white px-4">
+          <p className="text-base sm:text-lg mb-4">You are not logged in.</p>
           <button
             onClick={() => navigate("/login")}
-            className="bg-black px-6 py-2 rounded hover:bg-white/20 transition"
+            className="bg-black px-6 py-2 rounded hover:bg-white/20 transition text-sm sm:text-base"
           >
             Go to Login
           </button>
@@ -82,85 +82,85 @@ const ProfilePage = () => {
       <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 p-6 max-w-md mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center">Profile</h1>
+      <div className="relative z-10 p-4 sm:p-6 max-w-xs sm:max-w-sm mx-auto">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center">Profile</h1>
 
-        <div className="backdrop-blur-[20px] bg-white/10 p-6 rounded-2xl shadow-2xl space-y-4">
+        <div className="backdrop-blur-[20px] bg-white/10 p-4 sm:p-6 rounded-2xl shadow-2xl space-y-3 sm:space-y-4">
           {/* Form fields */}
           <div>
-            <label className="block mb-1 text-gray-300">Name</label>
+            <label className="block mb-1 text-gray-300 text-sm">Name</label>
             <input
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300">Surname</label>
+            <label className="block mb-1 text-gray-300 text-sm">Surname</label>
             <input
               name="surname"
               value={formData.surname}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300">Email</label>
+            <label className="block mb-1 text-gray-300 text-sm">Email</label>
             <input
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               type="email"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300">Cell</label>
+            <label className="block mb-1 text-gray-300 text-sm">Cell</label>
             <input
               name="cell"
               value={formData.cell}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300">Password</label>
+            <label className="block mb-1 text-gray-300 text-sm">Password</label>
             <input
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               type="password"
             />
           </div>
 
           <button
             onClick={handleSave}
-            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex gap-2"
+            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             <img
               src="/verified-account.png"
               alt="save"
-              className="w-6 h-6 cursor-pointer ml-[110px]"
+              className="w-5 h-5 sm:w-6 sm:h-6"
             /> Save Changes
           </button>
 
           <button
             onClick={handleLogout}
-            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex "
+            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             <img
               src="/logout (1).png"
               alt="logout"
-              className="w-10 h-7 cursor-pointer ml-[104px]"
+              className="w-5 h-5 sm:w-6 sm:h-6"
             /> Logout
           </button>
         </div>

@@ -58,7 +58,7 @@ const LoginPage = () => {
   };
 
   const inputClass = (field: "email" | "password") =>
-    `p-2 w-full rounded placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white ${
+    `p-2 w-full rounded placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base ${
       error.field === field ? "border-2 border-red-500" : "bg-white text-black"
     }`;
 
@@ -71,17 +71,17 @@ const LoginPage = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Form card */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <div className="backdrop-blur-[8px] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center mb-20 border border-white/20">
-          <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+        <div className="backdrop-blur-[8px] p-6 sm:p-8 rounded-2xl shadow-2xl max-w-xs sm:max-w-sm w-full text-center border border-white/20">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-white">Login</h1>
 
           {error.message && !error.field && (
-            <p className="text-red-500 text-sm mb-4">{error.message}</p>
+            <p className="text-red-500 text-xs sm:text-sm mb-4">{error.message}</p>
           )}
 
-          <div className="space-y-4 text-left">
+          <div className="space-y-3 sm:space-y-4 text-left">
             <div>
-              <label className="block text-gray-300 mb-1">Email</label>
+              <label className="block text-gray-300 mb-1 text-sm">Email</label>
               <input
                 placeholder="Email"
                 type="email"
@@ -90,12 +90,12 @@ const LoginPage = () => {
                 className={inputClass("email")}
               />
               {error.field === "email" && (
-                <p className="text-red-500 text-sm mt-1">{error.message}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{error.message}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-1">Password</label>
+              <label className="block text-gray-300 mb-1 text-sm">Password</label>
               <input
                 placeholder="Password"
                 type="password"
@@ -104,20 +104,20 @@ const LoginPage = () => {
                 className={inputClass("password")}
               />
               {error.field === "password" && (
-                <p className="text-red-500 text-sm mt-1">{error.message}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{error.message}</p>
               )}
             </div>
 
             <button
               onClick={handleLogin}
               disabled={loading}
-              className="bg-black text-white w-full py-2 rounded-lg hover:bg-green-800 transition"
+              className="bg-black text-white w-full py-2 rounded-lg hover:bg-green-700 transition text-sm sm:text-base"
             >
               {loading ? "Logging in..." : "Login"}
             </button>
           </div>
 
-          <p className="text-gray-300 text-sm mt-4 text-center">
+          <p className="text-gray-300 text-xs sm:text-sm mt-4 text-center">
             Don’t have an account?{" "}
             <Link to="/register" className="text-white hover:underline">
               Register

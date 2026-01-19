@@ -179,44 +179,44 @@ const ListDetailsPage = () => {
       <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 p-8 max-w-4xl mx-auto">
+      <div className="relative z-10 p-4 sm:p-6 md:p-8 max-w-sm sm:max-w-2xl md:max-w-4xl mx-auto">
         <button
           onClick={() => navigate("/home")}
-          className="mb-6 bg-black/50 text-white px-4 py-2 rounded-lg hover:bg-white/20 transition"
+          className="mb-4 sm:mb-6 bg-black/50 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-white/20 transition text-sm sm:text-base"
         >
           ← Back
         </button>
 
-        <div className="backdrop-blur-[20px] bg-white/10 p-8 rounded-2xl shadow-2xl">
-          <h1 className="text-3xl font-bold mb-6 text-center">
+        <div className="backdrop-blur-[20px] bg-white/10 p-4 sm:p-6 md:p-8 rounded-2xl shadow-2xl">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center">
             {list.name} 📝
           </h1>
 
           {/* Add/Edit Item Form */}
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">
+          <div className="mb-6 sm:mb-8">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4">
               {editingItemId ? "Edit Item" : "Add New Item"}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <input
                 name="itemName"
                 value={itemForm.itemName}
                 onChange={handleChange}
                 placeholder="Item Name"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               />
               <input
                 name="quantity"
                 value={itemForm.quantity}
                 onChange={handleChange}
                 placeholder="Quantity"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               />
               <select
                 name="category"
                 value={itemForm.category}
                 onChange={handleChange}
-                className="p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
+                className="p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
               >
                 {itemCategories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -225,7 +225,7 @@ const ListDetailsPage = () => {
                 ))}
               </select>
 
-              <label className="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black text-center transition">
+              <label className="bg-black text-white px-3 sm:px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black text-center transition text-sm sm:text-base">
                 📁 Choose Image
                 <input
                   type="file"
@@ -241,35 +241,35 @@ const ListDetailsPage = () => {
                 value={itemForm.notes}
                 onChange={handleChange}
                 placeholder="Notes"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white md:col-span-2"
+                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white sm:col-span-2 text-sm sm:text-base"
               />
             </div>
 
             {imagePreview && (
               <div className="mt-3">
-                <p className="text-sm text-gray-300">Preview:</p>
+                <p className="text-xs sm:text-sm text-gray-300">Preview:</p>
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="w-24 h-24 object-cover rounded border border-gray-400"
+                  className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded border border-gray-400"
                 />
               </div>
             )}
 
             <button
               onClick={handleAddOrEditItem}
-              className={`mt-6 ${
+              className={`mt-4 sm:mt-6 ${
                 editingItemId
                   ? "bg-black hover:bg-green-600"
                   : "bg-black hover:bg-green-700"
-              } text-white px-4 py-2 rounded-lg transition`}
+              } text-white px-4 py-2 rounded-lg transition text-sm sm:text-base`}
             >
               {editingItemId ? "Update Item" : "Add Item"}
             </button>
           </div>
 
           {/* List Items */}
-          <h2 className="text-xl font-semibold mb-3">Items in List</h2>
+          <h2 className="text-lg sm:text-xl font-semibold mb-3">Items in List</h2>
           {list.items.length === 0 ? (
             <p className="text-gray-400">No items yet.</p>
           ) : (
@@ -277,17 +277,17 @@ const ListDetailsPage = () => {
               {list.items.map((item: any) => (
                 <li
                   key={item.id}
-                  className="bg-white/10 p-4 rounded-lg flex justify-between items-center backdrop-blur-sm"
+                  className="bg-white/10 p-3 sm:p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 backdrop-blur-sm"
                 >
-                  <div>
-                    <h3 className="font-semibold text-white">
+                  <div className="w-full sm:flex-1">
+                    <h3 className="font-semibold text-white text-sm sm:text-base">
                       {item.itemName}
                     </h3>
-                    <p className="text-gray-300 text-sm">
+                    <p className="text-gray-300 text-xs sm:text-sm">
                       Qty: {item.quantity} | Category: {item.category}
                     </p>
                     {item.notes && (
-                      <p className="text-gray-400 text-sm">
+                      <p className="text-gray-400 text-xs sm:text-sm">
                         Notes: {item.notes}
                       </p>
                     )}
@@ -295,29 +295,29 @@ const ListDetailsPage = () => {
                       <img
                         src={item.image}
                         alt={item.itemName}
-                        className="w-20 h-20 object-cover rounded mt-2 border border-gray-500"
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded mt-2 border border-gray-500"
                       />
                     )}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-row">
                     <button
                       onClick={() => handleEditClick(item)}
-                      className="px-3 py-1 rounded "
+                      className="px-2 sm:px-3 py-1 rounded"
                     >
                        <img
                         src="/edit.png"
                         alt="edit"
-                        className="w-6 h-6 cursor-pointer" 
+                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" 
                       />
                     </button>
                     <button
                       onClick={() => handleDeleteItem(item.id)}
-                      className=" rounded flex items-center justify-center "
+                      className="rounded flex items-center justify-center"
                     >
                       <img
                         src="/bin.png"
                         alt="delete"
-                        className="w-6 h-6 cursor-pointer" 
+                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" 
                       />
                     </button>
                       

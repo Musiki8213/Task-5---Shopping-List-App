@@ -91,7 +91,7 @@ const RegisterPage = () => {
   };
 
   const inputClass = (field: keyof typeof errors) =>
-    `p-2 w-full rounded placeholder-gray-400 focus:outline-none focus:ring-2 ${
+    `p-2 w-full rounded placeholder-gray-400 focus:outline-none focus:ring-2 text-sm sm:text-base ${
       errors[field]
         ? "border-2 border-red-500"
         : "bg-white text-black focus:ring-white"
@@ -106,17 +106,17 @@ const RegisterPage = () => {
       <div className="absolute inset-0 bg-black/40"></div>
 
       {/* Form card */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <div className="backdrop-blur-[8px] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center mb-20 border border-white/20">
-          <h1 className="text-3xl font-bold mb-6 text-white">Register</h1>
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+        <div className="backdrop-blur-[8px] p-6 sm:p-8 rounded-2xl shadow-2xl max-w-xs sm:max-w-sm w-full text-center border border-white/20">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-white">Register</h1>
 
           {errors.general && (
-            <p className="text-red-500 mb-4">{errors.general}</p>
+            <p className="text-red-500 mb-4 text-xs sm:text-sm">{errors.general}</p>
           )}
 
-          <div className="space-y-4 text-left">
+          <div className="space-y-3 sm:space-y-4 text-left">
             <div>
-              <label className="block text-gray-300 mb-1">Name</label>
+              <label className="block text-gray-300 mb-1 text-sm">Name</label>
               <input
                 name="name"
                 placeholder="Name"
@@ -124,12 +124,12 @@ const RegisterPage = () => {
                 className={inputClass("name")}
               />
               {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.name}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-1">Surname</label>
+              <label className="block text-gray-300 mb-1 text-sm">Surname</label>
               <input
                 name="surname"
                 placeholder="Surname"
@@ -137,12 +137,12 @@ const RegisterPage = () => {
                 className={inputClass("surname")}
               />
               {errors.surname && (
-                <p className="text-red-500 text-sm mt-1">{errors.surname}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.surname}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-1">Email</label>
+              <label className="block text-gray-300 mb-1 text-sm">Email</label>
               <input
                 name="email"
                 type="email"
@@ -151,12 +151,12 @@ const RegisterPage = () => {
                 className={inputClass("email")}
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-1">Cell Number</label>
+              <label className="block text-gray-300 mb-1 text-sm">Cell Number</label>
               <input
                 name="cell"
                 placeholder="Cell Number"
@@ -164,12 +164,12 @@ const RegisterPage = () => {
                 className={inputClass("cell")}
               />
               {errors.cell && (
-                <p className="text-red-500 text-sm mt-1">{errors.cell}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.cell}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-300 mb-1">Password</label>
+              <label className="block text-gray-300 mb-1 text-sm">Password</label>
               <input
                 name="password"
                 type="password"
@@ -178,20 +178,20 @@ const RegisterPage = () => {
                 className={inputClass("password")}
               />
               {errors.password && (
-                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.password}</p>
               )}
             </div>
 
             <button
               onClick={handleRegister}
               disabled={loading}
-              className="bg-black text-white w-full py-2 rounded-lg hover:bg-green-800 transition"
+              className="bg-black text-white w-full py-2 rounded-lg hover:bg-green-800 transition text-sm sm:text-base"
             >
               {loading ? "Registering..." : "Register"}
             </button>
           </div>
 
-          <p className="text-gray-300 text-sm mt-4">
+          <p className="text-gray-300 text-xs sm:text-sm mt-4">
             Already have an account?{" "}
             <Link to="/login" className="text-white hover:underline">
               Login
