@@ -1,4 +1,4 @@
-# 🛒 ShopMate — Shopping List App
+# ShopMate — Shopping List App
 
 A simple and responsive **Shopping List App** built with **React + TypeScript**, **Redux Toolkit**, **Tailwind CSS**, and **JSON Server**.
 
@@ -6,7 +6,7 @@ This project allows users to register, log in, and manage multiple shopping list
 
 ---
 
-## 🚀 Features
+## Features
 
 ### 👤 User Management
 - User **Registration** with: name, surname, email, password, and cell number  
@@ -15,7 +15,7 @@ This project allows users to register, log in, and manage multiple shopping list
 - **Profile page** where users can update their info  
 - **Logout** functionality  
 
-### 🛍️ Shopping List Management
+### Shopping List Management
 - Create, view, edit, and delete shopping lists  
 - Each list can have multiple **items** with:
   - Item name  
@@ -25,7 +25,7 @@ This project allows users to register, log in, and manage multiple shopping list
 - Data is stored persistently in a **JSON Server** backend  
 - Lists and items update instantly with Redux state management  
 
-### ⚙️ Technical Features
+### Technical Features
 - Built with **React + TypeScript**  
 - State managed by **Redux Toolkit**  
 - Styled with **Tailwind CSS**  
@@ -35,7 +35,7 @@ This project allows users to register, log in, and manage multiple shopping list
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 | Category | Technology |
 |-----------|-------------|
@@ -47,7 +47,7 @@ This project allows users to register, log in, and manage multiple shopping list
 
 ---
 
-## 🧑‍💻 Setup Instructions
+## Setup Instructions
 
 ### 1️⃣ Clone the Repository
 ```bash
@@ -60,33 +60,32 @@ cd shopping-list-app
 npm install
 ```
 
-### 3️⃣ Run JSON Server
+### 3️⃣ Start the Backend and Frontend
 
-Create a db.json file in the project root with this starter data:
+**Option A — One command (recommended for testing):**
 ```bash
-{
-  "users": [],
-  "shoppingLists": []
-}
+npm run dev:all
 ```
+This starts both the JSON Server (port 5000) and the React app (port 5173).
 
-### Then start the JSON server:
+**Option B — Two terminals:**
 ```bash
-npx json-server --watch db.json --port 5000
-```
+# Terminal 1: start the API
+npm run server
 
-### 4️⃣ Start the React App
-```bash
+# Terminal 2: start the app
 npm run dev
- ```
+```
+
+### 4️⃣ Open the App
 
 
 The app runs at:
-👉 http://localhost:5173
+ http://localhost:5173
 The JSON API runs at:
-👉 http://localhost:5000
+ http://localhost:5000
 
-📁 Folder Structure
+ Folder Structure
 src/
  ├── pages/
  │   ├── LoginPage.tsx
