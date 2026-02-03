@@ -1,3 +1,6 @@
+/**
+ * ProfilePage — Edit profile and logout. Saves changes via JSON Server (localhost:5000/users/:id).
+ */
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../redux/store";
@@ -82,86 +85,87 @@ const ProfilePage = () => {
       <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 p-4 sm:p-6 max-w-xs sm:max-w-sm mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center">Profile</h1>
+      <div className="relative z-10 p-3 sm:p-4 max-w-xs sm:max-w-sm mx-auto py-4">
+        <h1 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-center">Profile</h1>
 
-        <div className="backdrop-blur-[20px] bg-white/10 p-4 sm:p-6 rounded-2xl shadow-2xl space-y-3 sm:space-y-4">
-          {/* Form fields */}
+        <div className="backdrop-blur-[20px] bg-white/10 p-3 sm:p-4 rounded-2xl shadow-2xl space-y-1.5 sm:space-y-2 max-h-[calc(100vh-8rem)] overflow-y-auto">
           <div>
-            <label className="block mb-1 text-gray-300 text-sm">Name</label>
+            <label className="block mb-0.5 text-gray-300 text-xs">Name</label>
             <input
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+              className="w-full py-1.5 px-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300 text-sm">Surname</label>
+            <label className="block mb-0.5 text-gray-300 text-xs">Surname</label>
             <input
               name="surname"
               value={formData.surname}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+              className="w-full py-1.5 px-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300 text-sm">Email</label>
+            <label className="block mb-0.5 text-gray-300 text-xs">Email</label>
             <input
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+              className="w-full py-1.5 px-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               type="email"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300 text-sm">Cell</label>
+            <label className="block mb-0.5 text-gray-300 text-xs">Cell</label>
             <input
               name="cell"
               value={formData.cell}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+              className="w-full py-1.5 px-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               type="text"
             />
           </div>
 
           <div>
-            <label className="block mb-1 text-gray-300 text-sm">Password</label>
+            <label className="block mb-0.5 text-gray-300 text-xs">Password</label>
             <input
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+              className="w-full py-1.5 px-2 rounded bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               type="password"
             />
           </div>
 
           <button
             onClick={handleSave}
-            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm sm:text-base"
+            className="bg-black w-full py-1.5 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm mt-1"
           >
             <img
               src="/verified-account.png"
-              alt="save"
-              className="w-5 h-5 sm:w-6 sm:h-6"
-            /> Save Changes
+              alt=""
+              className="w-4 h-4"
+            />
+            Save Changes
           </button>
 
           <button
             onClick={handleLogout}
-            className="bg-black w-full py-2 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm sm:text-base"
+            className="bg-black w-full py-1.5 rounded hover:bg-green-700 transition flex items-center justify-center gap-2 text-sm"
           >
             <img
               src="/logout (1).png"
-              alt="logout"
-              className="w-5 h-5 sm:w-6 sm:h-6"
-            /> Logout
+              alt=""
+              className="w-4 h-4"
+            />
+            Logout
           </button>
         </div>
       </div>

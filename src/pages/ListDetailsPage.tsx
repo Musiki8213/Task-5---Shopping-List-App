@@ -1,9 +1,13 @@
+/**
+ * ListDetailsPage — View and edit a single shopping list and its items. Uses JSON Server (localhost:5000/shoppingLists/:id).
+ */
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../redux/store";
 import Navbar from "../components/Navbar";
 
+/** Item categories for list items */
 const itemCategories = [
   "Grocery",
   "Dairy",
@@ -179,44 +183,47 @@ const ListDetailsPage = () => {
       <div className="absolute inset-0 bg-[url('/5.png')] bg-cover bg-center filter blur-[6px]"></div>
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 p-4 sm:p-6 md:p-8 max-w-sm sm:max-w-2xl md:max-w-4xl mx-auto">
+      <div className="relative z-10 p-3 sm:p-4 max-w-sm sm:max-w-2xl md:max-w-4xl mx-auto max-h-screen flex flex-col">
         <button
           onClick={() => navigate("/home")}
-          className="mb-4 sm:mb-6 bg-black/50 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-white/20 transition text-sm sm:text-base"
+          className="mb-2 sm:mb-3 bg-black/50 text-white px-3 py-1.5 rounded-lg hover:bg-white/20 transition text-sm shrink-0 flex items-center gap-1.5"
         >
-          ← Back
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
         </button>
 
-        <div className="backdrop-blur-[20px] bg-white/10 p-4 sm:p-6 md:p-8 rounded-2xl shadow-2xl">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-center">
-            {list.name} 📝
+        <div className="backdrop-blur-[20px] bg-white/10 p-3 sm:p-4 rounded-2xl shadow-2xl flex flex-col min-h-0 max-h-[calc(100vh-8rem)] overflow-hidden flex-1">
+          <h1 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-center shrink-0">
+            {list.name}
           </h1>
 
-          {/* Add/Edit Item Form */}
-          <div className="mb-6 sm:mb-8">
-            <h2 className="text-lg sm:text-xl font-semibold mb-4">
+          {/* Add/Edit Item Form — compact */}
+          <div className="mb-3 sm:mb-4 shrink-0">
+            <h2 className="text-base sm:text-lg font-semibold mb-2">
               {editingItemId ? "Edit Item" : "Add New Item"}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <input
                 name="itemName"
                 value={itemForm.itemName}
                 onChange={handleChange}
                 placeholder="Item Name"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+                className="py-1.5 px-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               />
               <input
                 name="quantity"
                 value={itemForm.quantity}
                 onChange={handleChange}
                 placeholder="Quantity"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+                className="py-1.5 px-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-sm"
               />
               <select
                 name="category"
                 value={itemForm.category}
                 onChange={handleChange}
-                className="p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-white text-sm sm:text-base"
+                className="py-1.5 px-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-white text-sm"
               >
                 {itemCategories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -225,8 +232,11 @@ const ListDetailsPage = () => {
                 ))}
               </select>
 
-              <label className="bg-black text-white px-3 sm:px-4 py-2 rounded-lg cursor-pointer hover:bg-white hover:text-black text-center transition text-sm sm:text-base">
-                📁 Choose Image
+              <label className="bg-black text-white px-3 py-1.5 rounded-lg cursor-pointer hover:bg-white hover:text-black text-center transition text-sm flex items-center justify-center gap-1.5">
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Image
                 <input
                   type="file"
                   name="imageFile"
@@ -241,86 +251,86 @@ const ListDetailsPage = () => {
                 value={itemForm.notes}
                 onChange={handleChange}
                 placeholder="Notes"
-                className="p-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white sm:col-span-2 text-sm sm:text-base"
+                rows={2}
+                className="py-1.5 px-2 rounded bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white sm:col-span-2 text-sm resize-none"
               />
             </div>
 
             {imagePreview && (
-              <div className="mt-3">
-                <p className="text-xs sm:text-sm text-gray-300">Preview:</p>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="text-xs text-gray-300">Preview:</span>
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded border border-gray-400"
+                  className="w-14 h-14 object-cover rounded border border-gray-400"
                 />
               </div>
             )}
 
             <button
               onClick={handleAddOrEditItem}
-              className={`mt-4 sm:mt-6 ${
+              className={`mt-2 ${
                 editingItemId
                   ? "bg-black hover:bg-green-600"
                   : "bg-black hover:bg-green-700"
-              } text-white px-4 py-2 rounded-lg transition text-sm sm:text-base`}
+              } text-white px-3 py-1.5 rounded-lg transition text-sm`}
             >
               {editingItemId ? "Update Item" : "Add Item"}
             </button>
           </div>
 
-          {/* List Items */}
-          <h2 className="text-lg sm:text-xl font-semibold mb-3">Items in List</h2>
+          {/* List Items — scrollable so form stays visible */}
+          <h2 className="text-base sm:text-lg font-semibold mb-2 shrink-0">Items in List</h2>
           {list.items.length === 0 ? (
-            <p className="text-gray-400">No items yet.</p>
+            <p className="text-gray-400 text-sm">No items yet.</p>
           ) : (
-            <ul className="space-y-3">
+            <ul className="space-y-2 overflow-y-auto min-h-0 flex-1 pr-1">
               {list.items.map((item: any) => (
                 <li
                   key={item.id}
-                  className="bg-white/10 p-3 sm:p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 backdrop-blur-sm"
+                  className="bg-white/10 p-2 sm:p-3 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 backdrop-blur-sm"
                 >
-                  <div className="w-full sm:flex-1">
-                    <h3 className="font-semibold text-white text-sm sm:text-base">
+                  <div className="w-full sm:flex-1 min-w-0">
+                    <h3 className="font-semibold text-white text-sm">
                       {item.itemName}
                     </h3>
-                    <p className="text-gray-300 text-xs sm:text-sm">
-                      Qty: {item.quantity} | Category: {item.category}
+                    <p className="text-gray-300 text-xs">
+                      Qty: {item.quantity} | {item.category}
                     </p>
                     {item.notes && (
-                      <p className="text-gray-400 text-xs sm:text-sm">
-                        Notes: {item.notes}
+                      <p className="text-gray-400 text-xs truncate max-w-[200px]">
+                        {item.notes}
                       </p>
                     )}
                     {item.image && (
                       <img
                         src={item.image}
                         alt={item.itemName}
-                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded mt-2 border border-gray-500"
+                        className="w-12 h-12 object-cover rounded mt-1 border border-gray-500"
                       />
                     )}
                   </div>
-                  <div className="flex gap-2 flex-row">
+                  <div className="flex gap-1 shrink-0">
                     <button
                       onClick={() => handleEditClick(item)}
-                      className="px-2 sm:px-3 py-1 rounded"
+                      className="p-1 rounded"
                     >
-                       <img
+                      <img
                         src="/edit.png"
                         alt="edit"
-                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" 
+                        className="w-5 h-5 cursor-pointer"
                       />
                     </button>
                     <button
                       onClick={() => handleDeleteItem(item.id)}
-                      className="rounded flex items-center justify-center"
+                      className="p-1 rounded flex items-center justify-center"
                     >
                       <img
                         src="/bin.png"
                         alt="delete"
-                        className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer" 
+                        className="w-5 h-5 cursor-pointer"
                       />
                     </button>
-                      
                   </div>
                 </li>
               ))}
