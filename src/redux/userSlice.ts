@@ -1,5 +1,8 @@
-import  { createSlice } from "@reduxjs/toolkit";
-import type  {  PayloadAction } from "@reduxjs/toolkit";
+/**
+ * userSlice — Redux slice for current user. Used by login, logout, and profile.
+ */
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface User {
   id: number;

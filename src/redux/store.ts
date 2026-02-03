@@ -1,3 +1,6 @@
+/**
+ * Redux store — Combines list and user slices. Used by Provider in main.tsx.
+ */
 import { configureStore } from "@reduxjs/toolkit";
 import listReducer from "./listSlice";
 import userReducer from "./userSlice";

@@ -1,6 +1,8 @@
-import  { createSlice } from "@reduxjs/toolkit";
-import type  {  PayloadAction } from "@reduxjs/toolkit";
-
+/**
+ * listSlice — Redux slice for shopping lists and list items. Synced with JSON Server.
+ */
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface ListItem {
   id: number;
@@ -16,7 +18,7 @@ export interface ShoppingList {
   userId: number;
   name: string;
   dateAdded: string;
-  category: string; 
+  category: string;
   items: ListItem[];
 }
 
