@@ -1,3 +1,6 @@
+/**
+ * PrivateRoute — Wraps routes that require a logged-in user. Redirects to /login if not authenticated.
+ */
 import type { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -11,10 +14,8 @@ const PrivateRoute = ({ children }: Props) => {
   const user = useSelector((state: RootState) => state.user.user);
 
   if (!user) {
-   
     return <Navigate to="/login" replace />;
   }
-
 
   return <>{children}</>;
 };

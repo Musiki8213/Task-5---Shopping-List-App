@@ -1,3 +1,6 @@
+/**
+ * main.tsx — App entry point. Mounts React app with Redux and React Router.
+ */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
