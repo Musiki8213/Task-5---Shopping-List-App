@@ -57,12 +57,20 @@
       "cell": "5656"
     },
     {
-      "id": 1760079342868,
+      "id": "1760079342868",
       "name": "Musiki",
       "surname": "musiki1@gmail.com",
       "email": "musiki1234@gmail.com",
       "password": "MTIzNDU=",
       "cell": "999999999"
+    },
+    {
+      "id": 1770017647071,
+      "name": "Musiki",
+      "surname": "Sithomola",
+      "email": "musikii@gmail.com",
+      "password": "MTIzNDU2",
+      "cell": "12222"
     }
   ],
   "shoppingLists": [
@@ -115,6 +123,38 @@
           "image": ""
         }
       ]
+    },
+    {
+      "id": "69f0",
+      "userId": 1770017647071,
+      "name": "The Trio Harvest Bowl",
+      "category": "Grocery",
+      "dateAdded": "2026-02-02T07:35:02.158Z",
+      "items": []
+    },
+    {
+      "id": "ab35",
+      "userId": 1770017647071,
+      "name": "Classic Chicken Slider",
+      "category": "Grocery",
+      "dateAdded": "2026-02-03T06:40:34.757Z",
+      "items": []
+    },
+    {
+      "id": "ea73",
+      "userId": 1770017647071,
+      "name": "The Trio Harvest Bowl",
+      "category": "Grocery",
+      "dateAdded": "2026-02-03T06:40:39.836Z",
+      "items": []
+    },
+    {
+      "id": "ecf4",
+      "userId": 1770017647071,
+      "name": "Musiki Sithomola",
+      "category": "Grocery",
+      "dateAdded": "2026-02-03T06:40:46.837Z",
+      "items": []
     }
   ]
 }
