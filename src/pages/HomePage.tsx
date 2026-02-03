@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+/**
+ * HomePage — Lists all shopping lists for the current user. Fetches from JSON Server (localhost:5000/shoppingLists).
+ */
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import type { RootState } from "../redux/store";
-import { setLists, addList, deleteList } from "../redux/listSlice";
+import { setLists } from "../redux/listSlice";
 import Navbar from "../components/Navbar";
 
+/** Available list categories for new lists */
 const categories = [
   "Grocery",
   "Dairy",
@@ -26,12 +30,16 @@ const HomePage = () => {
 
   const [form, setForm] = useState({ name: "", category: categories[0] });
 
-  useEffect(() => {
+  const fetchLists = useCallback(() => {
     if (!user) return;
     fetch(`http://localhost:5000/shoppingLists?userId=${user.id}`)
       .then((res) => res.json())
-      .then((data) => dispatch(setLists(data)));
+      .then((data) => dispatch(setLists(Array.isArray(data) ? data : [])));
   }, [dispatch, user]);
+
+  useEffect(() => {
+    fetchLists();
+  }, [fetchLists]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -57,14 +65,15 @@ const HomePage = () => {
       body: JSON.stringify(newList),
     });
 
-    const savedList = await res.json();
-    dispatch(addList(savedList));
+    if (!res.ok) return;
     setForm({ name: "", category: categories[0] });
+    // Re-fetch from server so all lists show (avoids id/format mismatch and ensures full list)
+    fetchLists();
   };
 
-  const handleDeleteList = async (id: number) => {
+  const handleDeleteList = async (id: number | string) => {
     await fetch(`http://localhost:5000/shoppingLists/${id}`, { method: "DELETE" });
-    dispatch(deleteList(id));
+    fetchLists();
   };
 
   if (!user) navigate("/login");
@@ -118,17 +127,17 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Lists Display */}
+        {/* Lists Display — scrollable so all lists are visible */}
         <div className="backdrop-blur-[20px] bg-white/10 p-4 sm:p-6 rounded-2xl shadow-2xl">
           <h2 className="text-lg sm:text-2xl font-semibold mb-4">Your Lists</h2>
 
           {lists.length === 0 ? (
             <p className="text-gray-400">No lists yet.</p>
           ) : (
-            <ul className="space-y-3 sm:space-y-4">
+            <ul className="space-y-3 sm:space-y-4 max-h-[50vh] overflow-y-auto pr-1">
               {lists.map((list) => (
                 <li
-                  key={list.id}
+                  key={String(list.id)}
                   className="bg-white/10 p-3 sm:p-4 rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 backdrop-blur-sm"
                 >
                   <div className="w-full sm:w-auto">

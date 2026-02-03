@@ -1,3 +1,6 @@
+/**
+ * AboutPage — Static about/mission page for ShopMate.
+ */
 import Navbar from "../components/Navbar";
 
 const AboutPage = () => {
@@ -52,7 +55,7 @@ const AboutPage = () => {
               “Smart organization leads to smart living.”
             </p>
             <p className="mt-2 text-gray-400 text-xs">
-              © {new Date().getFullYear()} ShopMate
+              Copyright {new Date().getFullYear()} ShopMate
             </p>
           </section>
         </div>

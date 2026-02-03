@@ -1,6 +1,9 @@
+/**
+ * LandingPage — Public welcome page with links to Login and Sign Up.
+ */
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar"; 
+import Navbar from "../components/Navbar";
 
 const LandingPage: React.FC = () => {
   return (
