@@ -1,8 +1,14 @@
+/**
+ * LoginPage — User login. Uses JSON Server at http://localhost:5000/users.
+ * Start the API with: npm run server (or npm run dev:all).
+ */
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/userSlice";
 import Navbar from "../components/Navbar";
+
+const API_BASE = "http://localhost:5000";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -26,32 +32,36 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch(`${API_BASE}/users`);
 
       if (!res.ok) {
-        throw new Error("Failed to connect to server.");
+        setError({
+          message: "Server error. Is the API running? Try: npm run server",
+        });
+        return;
       }
 
       const users = await res.json();
-
-      const user = users.find((u: any) => u.email === email);
+      const user = users.find((u: { email: string }) => u.email === email);
 
       if (!user) {
         setError({ field: "email", message: "Email not found." });
-        setLoading(false);
         return;
       }
 
       if (atob(user.password) !== password) {
         setError({ field: "password", message: "Incorrect password." });
-        setLoading(false);
         return;
       }
 
       dispatch(setUser(user));
       navigate("/home");
     } catch (err) {
-      setError({ message: "Something went wrong. Please try again." });
+      const msg =
+        err instanceof TypeError && err.message === "Failed to fetch"
+          ? "Cannot connect to server. Start it with: npm run server (or npm run dev:all)"
+          : "Something went wrong. Please try again.";
+      setError({ message: msg });
     } finally {
       setLoading(false);
     }
