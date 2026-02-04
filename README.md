@@ -8,7 +8,7 @@ This project allows users to register, log in, and manage multiple shopping list
 
 ## Features
 
-### 👤 User Management
+### User Management
 - User **Registration** with: name, surname, email, password, and cell number  
 - User **Login** with encrypted credentials  
 - **Protected routes** — only logged-in users can access home or list pages  
